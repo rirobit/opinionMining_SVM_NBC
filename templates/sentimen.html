@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block title %} Data Sentimen {% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<form method="POST" action="/data">
+				<table>
+					<thead>
+						<th>Tanggal Pertama</th>
+						<th>Tanggal Kedua</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<div class="form-group">
+									<input type="date" name="awal" id="awal" required="required">
+								</div>
+							</td>
+							<td>
+								<div class="form-group">
+									<input type="date" name="akhir" id="akhir" required="required">
+								</div>
+							</td>
+						</tr>	
+					</tbody>
+				</table>
+				<div class="form-group">
+ 					<button class="btn btn-primary" name="cek" id="cek" type="submit">Kirim</button>
+ 				</div>
+ 			</form>
+ 			{% if d is defined %}
+ 				<p>
+ 					Rentang antara {{d[3]}} hingga {{d[4]}} terdapat {{d[2]}} opini. Di antaranya opini dengan sentimen POSITIF sebanyak {{d[0]}} opini atau {{"{:.2f}".format(d[0]*100/d[2])}}%, dan opini dengan sentimen NEGATIF sebanyak {{d[1]}} opini atau {{"{:.2f}".format(d[1]*100/d[2])}}%.
+ 				</p>
+ 			{% endif %}
+		</div>
+	</div>
+</div>
+{% endblock %}

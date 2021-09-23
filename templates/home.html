@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+{% block title %} Home {% endblock %}
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<p> Selamat datang {{ session['name'] }} </p>
+				<form method="GET" action="/opinibaru">
+					<div class="form-group">
+ 					<button class="btn btn-primary" name="cek" id="cek" type="submit">Cek Opini Baru</button><br>
+ 					{% if n is defined %}
+ 						{% if n > 0 %}
+ 							<p id="hasil">Ada {{ n }} opini baru yang belum dianalisis</p>		
+ 							<button class="btn btn-primary" id="analisis" name="analisis" type="submit">Analisis Opini</button>
+ 						{% else %}
+ 							<p>Tidak ada opini baru</p>
+ 						{% endif %}
+ 					{% endif %}
+ 					{% if a is defined %}
+ 						<p>
+ 							Opini positif sebanyak {{ a[0] }} opini atau {{ "{:.2f}".format(a[0]*100/a[2]) }} %.
+ 						</p>
+						<p>
+							Opini negatif sebanyak {{ a[1] }} opini atau {{ "{:.2f}".format(a[1]*100/a[2]) }} %.
+ 						</p><br>
+ 					{% endif %}	
+ 				</div>
+ 			</form>
+			</div>
+			<form method="GET" action="/hapus">
+					<div class="form-group">
+ 					<button class="btn btn-primary" type="submit">hapus</button>
+ 				</div>
+ 			</form>
+		</div>
+	</div>
+{% endblock %}
+<script>
+	// $(document).ready(function(){
+	// 	var banyak = {{n}}
+	// 	if (banyak > 0) {
+	// 		$(#analisis).attr("disabled", false);
+	// 	}else{
+	// 		$(#analisis).attr("disabled", true);
+	// 	}
+
+	// 	$('#cek').on('click', function(){
+	// 		console.log('klik')
+	// 		system.out.println(banyak)
+	// 	});
+	// }
+	//function dis() {
+	//	$('#analisis').prop('disabled', false);
+	//}
+//$('#cek').on('click', function(){
+	//$(#analisis).attr("disabled", false);
+	//The URL that we are sending an Ajax request to.
+    //For this example, I'm sending a Ajax request to the current page.
+    //var url = window.location.href;
+    //$.ajax({
+      //  url: 'app.py/opinibaru',
+        //method : 'GET',
+        //success: function(data){
+        //	var obuser= JSON.parse(catat);
+        //	var panjang = obuser.lenght;
+
+        //The Ajax request was a success.
+        //Do something in here.
+        //}, complete: function(){
+          //  $("#test1").text("Hello world!");
+           // $('#analisis').attr("disabled", false);
+        //}
+    //});
+//});
+</script>
